@@ -11,7 +11,7 @@ st.title("Staff Apparel Order Form")
 inventory = [
     {
         "Item": "T-shirt",
-        "Image": "https://imgur.com/a/rxcnUHn",
+        "Image": "https://imgur.com/a/rxcnUHn.jpg",
         "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
     },
     {
