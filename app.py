@@ -16,12 +16,12 @@ inventory = [
     },
     {
         "Item": "Hoodie",
-        "Image": "https://via.placeholder.com/100",  # Replace with real image link
+        "Image": "https://imgur.com/a/rxcnUHn.jpg",  # Replace with real image link
         "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
     },
     {
         "Item": "Cap",
-        "Image": "https://via.placeholder.com/100",  # Replace with real image link
+        "Image": "https://imgur.com/a/rxcnUHn.jpg",  # Replace with real image link
         "Sizes": ["One Size"]
     }
 ]
