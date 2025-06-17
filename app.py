@@ -7,7 +7,7 @@ from datetime import datetime
 
 st.title("Staff Apparel Order Form")
 
-# Inventory with your Imgur image link
+# Inventory with Winter Jacket and your Imgur image link
 inventory = [
     {
         "Item": "Winter Jacket",
