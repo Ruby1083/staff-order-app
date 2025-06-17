@@ -50,9 +50,6 @@ for i in range(int(num_items)):
 
 submit = st.button("📦 Submit Order")
 
-# Handle order submission
-submit = st.button("📦 Submit Order")
-
 if submit:
     if not staff_name.strip():
         st.error("❗ Please enter your name before submitting.")
@@ -84,5 +81,3 @@ if submit:
             file_name=file_name,
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
-
-
