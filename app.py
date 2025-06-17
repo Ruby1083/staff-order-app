@@ -1,83 +1,93 @@
 import streamlit as st
 import pandas as pd
-from datetime import datetime
 from io import BytesIO
+from email.message import EmailMessage
+import smtplib
+from datetime import datetime
 
-# Sample product data with images
-products = {
-    "TSHIRT-BLACK": {
-        "name": "Black T-Shirt",
-        "image": "https://i.imgur.com/ZKv5i6T.png"
-    },
-    "HOODIE-GREY": {
-        "name": "Grey Hoodie",
-        "image": "https://i.imgur.com/GD5kEaA.png"
-    },
-    "CAP-NAVY": {
-        "name": "Navy Cap",
-        "image": "https://i.imgur.com/0rLDP2x.png"
-    }
-}
+st.title("Staff Apparel Order Form")
 
-sizes = ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
+# --- Sample inventory (extend as needed) ---
+inventory = [
+    {"Item": "T-shirt", "Image": "https://via.placeholder.com/100", "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]},
+    {"Item": "Hoodie", "Image": "https://via.placeholder.com/100", "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]},
+    {"Item": "Cap", "Image": "https://via.placeholder.com/100", "Sizes": ["One Size"]}
+]
 
-st.title("🧾 Staff Apparel Order Form")
+# --- Staff info ---
+st.header("Staff Information")
+name = st.text_input("Full Name")
+email = st.text_input("Email")
+phone = st.text_input("Phone Number")
+location = st.text_input("Location / Office")
+address = st.text_area("Delivery Address")
 
-staff_name = st.text_input("👤 Staff Name")
+# --- Order form ---
+st.header("Order Details")
+order = []
 
-st.markdown("### 🛒 Order Items")
-num_items = st.number_input("Number of different items to order", min_value=1, max_value=10, value=1)
+for item in inventory:
+    with st.expander(item["Item"]):
+        st.image(item["Image"], width=100)
+        qty = st.number_input(f"Quantity for {item['Item']}", min_value=0, step=1, key=f"{item['Item']}_qty")
+        if qty > 0:
+            size = st.selectbox(f"Select size for {item['Item']}", item["Sizes"], key=f"{item['Item']}_size")
+            order.append({"Item": item["Item"], "Size": size, "Quantity": qty})
 
-order_list = []
-
-for i in range(int(num_items)):
-    st.markdown(f"#### Item {i + 1}")
-    col1, col2 = st.columns([1, 3])
-    with col1:
-        selected_sku = st.selectbox(f"Product", list(products.keys()), key=f"sku_{i}")
-        selected_size = st.selectbox("Size", sizes, key=f"size_{i}")
-        quantity = st.number_input("Quantity", min_value=1, step=1, key=f"qty_{i}")
-    with col2:
-        image_url = products[selected_sku]["image"]
-        st.image(image_url, width=200, caption=products[selected_sku]["name"])
-
-    order_list.append({
-        "SKU": selected_sku,
-        "Product Name": products[selected_sku]["name"],
-        "Size": selected_size,
-        "Quantity": quantity
-    })
-
-submit = st.button("📦 Submit Order")
-
-if submit:
-    if not staff_name.strip():
-        st.error("❗ Please enter your name before submitting.")
+# --- Submission ---
+if st.button("Submit Order"):
+    if not name or not email or not address:
+        st.error("Please fill out all required fields.")
+    elif len(order) == 0:
+        st.warning("No items selected.")
     else:
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        full_order = []
-        for item in order_list:
-            full_order.append({
-                "Timestamp": timestamp,
-                "Staff Name": staff_name,
-                **item
-            })
+        # Create order DataFrame
+        df = pd.DataFrame(order)
+        df.insert(0, "Name", name)
+        df.insert(1, "Email", email)
+        df.insert(2, "Phone", phone)
+        df.insert(3, "Location", location)
+        df.insert(4, "Address", address)
+        df["Timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        st.success("✅ Order submitted!")
-        st.subheader("📝 Order Summary")
-        order_df = pd.DataFrame(full_order)
-        st.dataframe(order_df)
-
+        # Convert to Excel
         output = BytesIO()
-        with pd.ExcelWriter(output, engine='openpyxl') as writer:
-            order_df.to_excel(writer, index=False, sheet_name="Orders")
+        with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
+            df.to_excel(writer, index=False, sheet_name="Order")
+        excel_data = output.getvalue()
 
-        safe_name = staff_name.strip().replace(' ', '_') or "unknown_staff"
-        file_name = f"order_{safe_name}.xlsx"
+        # Send via email
+        def send_email():
+            msg = EmailMessage()
+            msg["Subject"] = f"New Apparel Order from {name}"
+            msg["From"] = st.secrets["EMAIL_USER"]
+            msg["To"] = st.secrets["ADMIN_EMAIL"]
+            msg.set_content(f"A new order has been submitted by {name}.")
 
-        st.download_button(
-            label="📁 Download Order Excel File",
-            data=output.getvalue(),
-            file_name=file_name,
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
+            msg.add_attachment(excel_data,
+                               maintype="application",
+                               subtype="vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                               filename=f"order_{name.replace(' ', '_')}.xlsx")
+
+            try:
+                smtp_server = st.secrets["SMTP_SERVER"]
+                smtp_port = int(st.secrets["SMTP_PORT"])
+                use_tls = st.secrets.get("SMTP_USE_TLS", "false").lower() == "true"
+                if use_tls:
+                    with smtplib.SMTP(smtp_server, smtp_port) as server:
+                        server.starttls()
+                        server.login(st.secrets["EMAIL_USER"], st.secrets["EMAIL_PASS"])
+                        server.send_message(msg)
+                else:
+                    with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
+                        server.login(st.secrets["EMAIL_USER"], st.secrets["EMAIL_PASS"])
+                        server.send_message(msg)
+                return True, "Order submitted and email sent!"
+            except Exception as e:
+                return False, f"Email failed: {e}"
+
+        success, msg = send_email()
+        if success:
+            st.success(msg)
+        else:
+            st.error(msg)
