@@ -51,15 +51,38 @@ for i in range(int(num_items)):
 submit = st.button("📦 Submit Order")
 
 # Handle order submission
-if submit:
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    full_order = []
-    for item in order_list:
-        full_order.append({
-            "Timestamp": timestamp,
-            "Staff Name": staff_name,
-            **item
-        })
+submit = st.button("📦 Submit Order")
 
-    st.suc
+if submit:
+    if not staff_name.strip():
+        st.error("❗ Please enter your name before submitting.")
+    else:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        full_order = []
+        for item in order_list:
+            full_order.append({
+                "Timestamp": timestamp,
+                "Staff Name": staff_name,
+                **item
+            })
+
+        st.success("✅ Order submitted!")
+        st.subheader("📝 Order Summary")
+        order_df = pd.DataFrame(full_order)
+        st.dataframe(order_df)
+
+        output = BytesIO()
+        with pd.ExcelWriter(output, engine='openpyxl') as writer:
+            order_df.to_excel(writer, index=False, sheet_name="Orders")
+
+        safe_name = staff_name.strip().replace(' ', '_') or "unknown_staff"
+        file_name = f"order_{safe_name}.xlsx"
+
+        st.download_button(
+            label="📁 Download Order Excel File",
+            data=output.getvalue(),
+            file_name=file_name,
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+
 
