@@ -7,11 +7,23 @@ from datetime import datetime
 
 st.title("Staff Apparel Order Form")
 
-# --- Sample inventory ---
+# --- Inventory with Google Drive image ---
 inventory = [
-    {"Item": "T-shirt", "Image": "https://via.placeholder.com/100", "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]},
-    {"Item": "Hoodie", "Image": "https://via.placeholder.com/100", "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]},
-    {"Item": "Cap", "Image": "https://via.placeholder.com/100", "Sizes": ["One Size"]}
+    {
+        "Item": "T-shirt",
+        "Image": "https://drive.google.com/uc?export=view&id=1IIQIoRobm5ofyWGK7wdkxgFqL41Vm0t2",
+        "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
+    },
+    {
+        "Item": "Hoodie",
+        "Image": "https://via.placeholder.com/100",  # Replace with real image link
+        "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
+    },
+    {
+        "Item": "Cap",
+        "Image": "https://via.placeholder.com/100",  # Replace with real image link
+        "Sizes": ["One Size"]
+    }
 ]
 
 # --- Staff info ---
@@ -28,7 +40,7 @@ order = []
 
 for item in inventory:
     with st.expander(item["Item"]):
-        st.image(item["Image"], width=100)
+        st.image(item["Image"], width=120)
         for size in item["Sizes"]:
             qty = st.number_input(
                 f"{item['Item']} - Size {size}",
@@ -61,7 +73,7 @@ if st.button("Submit Order"):
             df.to_excel(writer, index=False, sheet_name="Order")
         excel_data = output.getvalue()
 
-        # Send via email
+        # Send email
         def send_email():
             msg = EmailMessage()
             msg["Subject"] = f"New Apparel Order from {name}"
