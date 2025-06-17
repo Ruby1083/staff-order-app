@@ -7,26 +7,21 @@ from datetime import datetime
 
 st.title("Staff Apparel Order Form")
 
-# --- Inventory with Google Drive image ---
+# --- Inventory with correct image URL ---
 inventory = [
     {
         "Item": "T-shirt",
-        "Image": "https://i.imgur.com/wQLUiUH.jpeg",
+        "Image": "https://i.imgur.com/tSh2HKL.jpg",  # Replace with your real image link
         "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
     },
     {
         "Item": "Hoodie",
-        "Image": "https://imgur.com/a/rxcnUHn.jpg",  # Replace with real image link
+        "Image": "https://via.placeholder.com/100",
         "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
-    },
-    {
-        "Item": "Cap",
-        "Image": "https://imgur.com/a/rxcnUHn.jpg",  # Replace with real image link
-        "Sizes": ["One Size"]
     }
 ]
 
-# --- Staff info ---
+# --- Staff Info ---
 st.header("Staff Information")
 name = st.text_input("Full Name")
 email = st.text_input("Email")
@@ -34,13 +29,13 @@ phone = st.text_input("Phone Number")
 location = st.text_input("Location / Office")
 address = st.text_area("Delivery Address")
 
-# --- Order form with multiple sizes per item ---
+# --- Order Section ---
 st.header("Order Details")
 order = []
 
 for item in inventory:
     with st.expander(item["Item"]):
-        st.image(item["Image"], width=120)
+        st.image(item["Image"], width=150)
         for size in item["Sizes"]:
             qty = st.number_input(
                 f"{item['Item']} - Size {size}",
@@ -49,16 +44,19 @@ for item in inventory:
                 key=f"{item['Item']}_{size}"
             )
             if qty > 0:
-                order.append({"Item": item["Item"], "Size": size, "Quantity": qty})
+                order.append({
+                    "Item": item["Item"],
+                    "Size": size,
+                    "Quantity": qty
+                })
 
-# --- Submission ---
+# --- Submit ---
 if st.button("Submit Order"):
     if not name or not email or not address:
         st.error("Please fill out all required fields.")
     elif len(order) == 0:
         st.warning("No items selected.")
     else:
-        # Create order DataFrame
         df = pd.DataFrame(order)
         df.insert(0, "Name", name)
         df.insert(1, "Email", email)
@@ -67,7 +65,7 @@ if st.button("Submit Order"):
         df.insert(4, "Address", address)
         df["Timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        # Convert to Excel
+        # Save Excel
         output = BytesIO()
         with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
             df.to_excel(writer, index=False, sheet_name="Order")
@@ -79,7 +77,7 @@ if st.button("Submit Order"):
             msg["Subject"] = f"New Apparel Order from {name}"
             msg["From"] = st.secrets["EMAIL_USER"]
             msg["To"] = st.secrets["ADMIN_EMAIL"]
-            msg.set_content(f"A new apparel order has been submitted by {name}.")
+            msg.set_content(f"New order submitted by {name}.")
 
             msg.add_attachment(
                 excel_data,
