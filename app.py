@@ -14,6 +14,13 @@ inventory = [
         "Image": "https://i.imgur.com/2iQt8qs.jpg",
         "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
     },
+    ]
+
+st.title("Order Form")
+
+for item in inventory:
+    with st.expander(item["Item"]):
+        st.image(item["Image"], width=150)
     {
         "Item": "Hoodie",
         "Image": "https://via.placeholder.com/100",
