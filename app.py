@@ -36,8 +36,6 @@ inventory = {
         {"Item": "Ball Pen - Blue Ink (box)", "Image": "https://i.imgur.com/EdOevMh.jpeg", "Price": 21, "Sizes": []},
         {"Item": "Ball Pen - Black Ink (box)", "Image": "https://i.imgur.com/CDheZrD.jpeg", "Price": 18, "Sizes": []},
         {"Item": "Sticky Note Set", "Image": "https://i.imgur.com/h7PqeIV.jpeg", "Price": 0.5, "Sizes": []}
-        {"Item": "Roll Sticky Note", "Image": "https://i.imgur.com/ysZvE3M.jpeg", "Price": 0.65, "Sizes": []}
-        {"Item": "Small Notebook", "Image": "https://i.imgur.com/OO9IhdZ.jpeg", "Price": 0.35, "Sizes": []}
     ]
 }
 # Contact Info
