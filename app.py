@@ -7,10 +7,15 @@ from datetime import datetime
 
 st.title("Global Merchandise Item Order Form")
 
-# Inventory grouped by categories, with image URLs added for all items
+# Inventory grouped by categories, with updated Winter Jacket image URL from Imgur
 inventory = {
     "Apparel": [
-        {"Item": "Winter Jacket", "Image": "https://i.imgur.com/wQLUiUH.jpeg", "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"], "Price": 20.06},
+        {
+            "Item": "Winter Jacket",
+            "Image": "https://i.imgur.com/wQLUiUH.jpeg",
+            "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+            "Price": 20.06
+        },
         {"Item": "Men Oxford Shirt", "Image": "https://i.imgur.com/2IjT20W.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
         {"Item": "Woman Oxford Shirt", "Image": "https://i.imgur.com/y0yxA6Q.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
         {"Item": "Men Bamboo Shirt", "Image": "https://i.imgur.com/gLY4cHy.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
@@ -29,13 +34,13 @@ inventory = {
     "Work Protection Gear": [
         {
             "Item": "Safety Helmet",
-            "Image": "https://i.imgur.com/helmet_example.jpg",  # Replace with your helmet image URL
+            "Image": "https://i.imgur.com/3H7xpQi.jpeg",  # Replace with actual helmet image URL if you want
             "Colors": ["Blue", "Red", "White"],
             "Price": 3.67
         },
         {
             "Item": "Safety Vest",
-            "Image": "https://i.imgur.com/safetyvest_example.jpg",  # Replace with your safety vest image URL
+            "Image": "https://i.imgur.com/Ga6GrEo.jpeg",  # Replace with actual vest image URL if you want
             "Sizes": ["L", "XL", "2XL", "3XL"],
             "Price": 3.73
         },
