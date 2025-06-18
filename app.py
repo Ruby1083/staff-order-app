@@ -96,7 +96,7 @@ inventory = {
         },
         {
             "Item": "Winter Jacket",
-            "Image": "https://i.imgur.com/wQLUiUH.jpeg",
+            "Image": "https://drive.google.com/uc?export=view&id=1IIQIoRobm5ofyWGK7wdkxgFqL41Vm0t2",
             "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
             "Price": 20.06
         },
