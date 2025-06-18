@@ -97,7 +97,6 @@ inventory = {
         {
             "Item": "Magnetic Pin",
             "Image": "https://i.imgur.com/Qd1Xqtb.jpeg",
-            "Sizes": ["One Size"],
             "Price": 1.50
         }
     ]
