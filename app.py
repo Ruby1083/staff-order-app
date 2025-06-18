@@ -13,9 +13,46 @@ inventory = [
         "Item": "Winter Jacket",
         "Image": "https://i.imgur.com/wQLUiUH.jpeg",
         "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
-        "Price": 20.06  # USD
+        "Price": 20.06
+    },
+    {
+        "Item": "Men Oxford Shirt",
+        "Image": "https://i.imgur.com/nOGc2bd.jpeg",
+        "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+        "Price": 16.00
+    },
+    {
+        "Item": "Woman Oxford Shirt",
+        "Image": "https://i.imgur.com/Vk1NxDN.jpeg",
+        "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+        "Price": 16.00
+    },
+    {
+        "Item": "Men Bamboo Shirt",
+        "Image": "https://i.imgur.com/ESNzIId.jpeg",
+        "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+        "Price": 16.00
+    },
+    {
+        "Item": "Woman Bamboo Shirt",
+        "Image": "https://i.imgur.com/fZ9NcQo.jpeg",
+        "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+        "Price": 16.00
+    },
+    {
+        "Item": "Round Neck T-shirt (Long sleeves - Blue)",
+        "Image": "https://i.imgur.com/K6PfEQl.jpeg",
+        "Sizes": ["S", "M", "L", "2XL"],
+        "Price": 7.50
+    },
+    {
+        "Item": "Round Neck T-shirt (Short Sleeves - Blue)",
+        "Image": "https://i.imgur.com/2aykJjH.jpeg",
+        "Sizes": ["XS", "S", "M", "L", "2XL"],
+        "Price": 6.00
     }
 ]
+
 
 # Staff info inputs
 st.header("Contact Information")
