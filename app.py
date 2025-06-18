@@ -97,6 +97,7 @@ inventory = {
         {
             "Item": "Magnetic Pin",
             "Image": "https://i.imgur.com/Qd1Xqtb.jpeg",
+            "Sizes": ["One Size"],
             "Price": 1.50
         }
     ]
@@ -121,12 +122,14 @@ for category, items in inventory.items():
         for item in items:
             st.subheader(f"{item['Item']} (USD {item['Price']:.2f})")
             st.image(item["Image"], width=150)
-            for size in item["Sizes"]:
+
+            # If only one size labeled "One Size", show single quantity input without size label
+            if item["Sizes"] == ["One Size"]:
                 qty = st.number_input(
-                    f"{item['Item']} - Size {size}",
+                    f"{item['Item']} - Quantity",
                     min_value=0,
                     step=1,
-                    key=f"{item['Item']}_{size}"
+                    key=f"{item['Item']}_one_size"
                 )
                 if qty > 0:
                     subtotal = qty * item["Price"]
@@ -138,12 +141,37 @@ for category, items in inventory.items():
                         "Location": location,
                         "Address": address,
                         "Item": item["Item"],
-                        "Size": size,
+                        "Size": "",
                         "Quantity": qty,
                         "Unit Price (USD)": item["Price"],
                         "Subtotal (USD)": round(subtotal, 2)
                     })
                     total_amount += subtotal
+            else:
+                # Multiple sizes
+                for size in item["Sizes"]:
+                    qty = st.number_input(
+                        f"{item['Item']} - Size {size}",
+                        min_value=0,
+                        step=1,
+                        key=f"{item['Item']}_{size}"
+                    )
+                    if qty > 0:
+                        subtotal = qty * item["Price"]
+                        order.append({
+                            "Category": category,
+                            "Name": name,
+                            "Email": email,
+                            "Phone": phone,
+                            "Location": location,
+                            "Address": address,
+                            "Item": item["Item"],
+                            "Size": size,
+                            "Quantity": qty,
+                            "Unit Price (USD)": item["Price"],
+                            "Subtotal (USD)": round(subtotal, 2)
+                        })
+                        total_amount += subtotal
             st.markdown("---")  # horizontal line between items
 
 st.write(f"### Total Amount: USD {total_amount:.2f}")
