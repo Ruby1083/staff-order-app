@@ -7,12 +7,13 @@ from datetime import datetime
 
 st.title("Staff Apparel Order Form")
 
-# Inventory with Winter Jacket and your Imgur image link
+# Inventory with price
 inventory = [
     {
         "Item": "Winter Jacket",
         "Image": "https://i.imgur.com/wQLUiUH.jpeg",
-        "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
+        "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+        "Price": 20.06  # USD
     }
 ]
 
@@ -42,7 +43,9 @@ for item in inventory:
                 order.append({
                     "Item": item["Item"],
                     "Size": size,
-                    "Quantity": qty
+                    "Quantity": qty,
+                    "Unit Price (USD)": item["Price"],
+                    "Subtotal (USD)": round(qty * item["Price"], 2)
                 })
 
 # Submit button and processing
@@ -60,6 +63,11 @@ if st.button("Submit Order"):
         df.insert(4, "Address", address)
         df["Timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+        total_amount = df["Subtotal (USD)"].sum()
+
+        # Display total amount in app
+        st.subheader(f"Total Amount: USD ${total_amount:.2f}")
+
         # Create Excel file in memory
         output = BytesIO()
         with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
@@ -72,7 +80,11 @@ if st.button("Submit Order"):
             msg["Subject"] = f"New Apparel Order from {name}"
             msg["From"] = st.secrets["EMAIL_USER"]
             msg["To"] = st.secrets["ADMIN_EMAIL"]
-            msg.set_content(f"New order submitted by {name}.\n\nSee attached Excel file.")
+            msg.set_content(
+                f"New order submitted by {name}.\n\n"
+                f"Total Amount: USD ${total_amount:.2f}\n\n"
+                "See attached Excel file for full order details."
+            )
 
             msg.add_attachment(
                 excel_data,
