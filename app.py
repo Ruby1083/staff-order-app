@@ -123,10 +123,10 @@ for category, items in inventory.items():
             st.subheader(f"{item['Item']} (USD {item['Price']:.2f})")
             st.image(item["Image"], width=150)
 
-            # If only one size labeled "One Size", show single quantity input without size label
+            # One size items: label only item name (no 'Quantity' or anything else)
             if item["Sizes"] == ["One Size"]:
                 qty = st.number_input(
-                    f"{item['Item']} - Quantity",
+                    f"{item['Item']}",   # Just the item name here, exactly as requested
                     min_value=0,
                     step=1,
                     key=f"{item['Item']}_one_size"
@@ -172,7 +172,7 @@ for category, items in inventory.items():
                             "Subtotal (USD)": round(subtotal, 2)
                         })
                         total_amount += subtotal
-            st.markdown("---")  # horizontal line between items
+            st.markdown("---")
 
 st.write(f"### Total Amount: USD {total_amount:.2f}")
 
