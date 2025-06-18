@@ -137,6 +137,7 @@ phone = st.text_input("Phone Number")
 location = st.text_input("Location / Office")
 address = st.text_area("Delivery Address")
 
+# Order Details
 st.header("Order Details")
 order = []
 
@@ -147,7 +148,7 @@ for category, items in inventory.items():
             item_price = item["Price"]
             img_url = item.get("Image", "")
 
-            st.write(f"**{item_name}** (USD {item_price:.2f})")
+            st.markdown(f"**{item_name}** - USD {item_price:.2f}")
             if img_url:
                 st.image(img_url, width=150)
 
@@ -177,17 +178,21 @@ for category, items in inventory.items():
                 if qty > 0:
                     order.append({
                         "Item": item_name,
-                        "Size": "One Size",
+                        "Size": "",
                         "Quantity": qty,
                         "Price": item_price,
                         "Total": qty * item_price
                     })
 
-# Calculate total amount
-total_amount = sum(item["Total"] for item in order)
-if total_amount > 0:
-    st.write(f"### Total Amount: USD {total_amount:.2f}")
+# Show summary before submission
+if order:
+    st.subheader("Order Summary")
+    summary_df = pd.DataFrame(order)[["Item", "Size", "Quantity", "Price", "Total"]]
+    st.dataframe(summary_df, use_container_width=True)
+    total_amount = summary_df["Total"].sum()
+    st.markdown(f"### **Total Amount: USD {total_amount:.2f}**")
 
+# Submit
 if st.button("Submit Order"):
     if not name or not email or not address:
         st.error("Please fill out all required fields.")
@@ -234,12 +239,4 @@ if st.button("Submit Order"):
                 else:
                     with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
                         server.login(st.secrets["EMAIL_USER"], st.secrets["EMAIL_PASS"])
-                        server.send_message(msg)
-
-                return True, "Order submitted and email sent!"
-            except Exception as e:
-                return False, f"Email failed: {e}"
-
-        success, message = send_email()
-        if success:
-            st
+                       
