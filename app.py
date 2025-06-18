@@ -31,9 +31,12 @@ inventory = {
         {"Item": "Safety Helmet - Red", "Image": "https://i.imgur.com/c14k5Ji.png", "Price": 3.67, "Sizes": []},
         {"Item": "Safety Helmet - White", "Image": "https://i.imgur.com/aGWu8WE.png", "Price": 3.67, "Sizes": []},
         {"Item": "Safety Vest", "Image": "", "Price": 3.73, "Sizes": ["L", "XL", "2XL", "3XL"]}
+    ],
+  "Job Fair Sourvenirs": [
+        {"Item": "Ball Pen - Blue Ink", "Image": "https://i.imgur.com/4egynk5.png", "Price": 21, "Sizes": []},
+        {"Item": "Ball Pen - Black Ink", "Image": "https://i.imgur.com/c14k5Ji.png", "Price": 18, "Sizes": []},
     ]
 }
-
 # Contact Info
 st.header("Contact Information")
 name = st.text_input("Full Name")
