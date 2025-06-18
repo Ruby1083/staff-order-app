@@ -8,7 +8,8 @@ from datetime import datetime
 st.title("Global Merchandise Order Form")
 
 # Inventory with price
-inventory = [
+inventory = {
+        "Apparel": [
     {
         "Item": "Winter Jacket",
         "Image": "https://i.imgur.com/wQLUiUH.jpeg",
