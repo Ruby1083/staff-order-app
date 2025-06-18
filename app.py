@@ -5,7 +5,7 @@ from email.message import EmailMessage
 import smtplib
 from datetime import datetime
 
-st.title("Global Merchandise Order Form")
+st.title("Staff Apparel Order Form")
 
 # Inventory grouped under one category "Apparel"
 inventory = {
@@ -104,7 +104,7 @@ inventory = {
 }
 
 # Staff info inputs
-st.header("Contact Information")
+st.header("Staff Information")
 name = st.text_input("Full Name")
 email = st.text_input("Email")
 phone = st.text_input("Phone Number")
@@ -120,31 +120,32 @@ total_amount = 0.0
 for category, items in inventory.items():
     with st.expander(category):
         for item in items:
-            with st.expander(f"{item['Item']} (USD {item['Price']:.2f})"):
-                st.image(item["Image"], width=150)
-                for size in item["Sizes"]:
-                    qty = st.number_input(
-                        f"{item['Item']} - Size {size}",
-                        min_value=0,
-                        step=1,
-                        key=f"{item['Item']}_{size}"
-                    )
-                    if qty > 0:
-                        subtotal = qty * item["Price"]
-                        order.append({
-                            "Category": category,
-                            "Name": name,
-                            "Email": email,
-                            "Phone": phone,
-                            "Location": location,
-                            "Address": address,
-                            "Item": item["Item"],
-                            "Size": size,
-                            "Quantity": qty,
-                            "Unit Price (USD)": item["Price"],
-                            "Subtotal (USD)": round(subtotal, 2)
-                        })
-                        total_amount += subtotal
+            st.subheader(f"{item['Item']} (USD {item['Price']:.2f})")
+            st.image(item["Image"], width=150)
+            for size in item["Sizes"]:
+                qty = st.number_input(
+                    f"{item['Item']} - Size {size}",
+                    min_value=0,
+                    step=1,
+                    key=f"{item['Item']}_{size}"
+                )
+                if qty > 0:
+                    subtotal = qty * item["Price"]
+                    order.append({
+                        "Category": category,
+                        "Name": name,
+                        "Email": email,
+                        "Phone": phone,
+                        "Location": location,
+                        "Address": address,
+                        "Item": item["Item"],
+                        "Size": size,
+                        "Quantity": qty,
+                        "Unit Price (USD)": item["Price"],
+                        "Subtotal (USD)": round(subtotal, 2)
+                    })
+                    total_amount += subtotal
+            st.markdown("---")  # horizontal line between items
 
 st.write(f"### Total Amount: USD {total_amount:.2f}")
 
