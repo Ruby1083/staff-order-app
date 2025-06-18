@@ -50,6 +50,54 @@ inventory = [
         "Image": "https://i.imgur.com/2aykJjH.jpeg",
         "Sizes": ["XS", "S", "M", "L", "2XL"],
         "Price": 6.00
+    },
+    {
+        "Item": "Round Neck T-shirt (Long sleeves - Yellow)",
+        "Image": "https://i.imgur.com/K2eUZ7M.jpeg",
+        "Sizes": ["S", "M", "L", "2XL"],
+        "Price": 4.44
+    },
+    {
+        "Item": "Round Neck T-shirt (Long Sleeves - Orange)",
+        "Image": "https://i.imgur.com/K2eUZ7M.jpeg",
+        "Sizes": ["S", "M", "L", "2XL"],
+        "Price": 4.44
+    },
+    {
+        "Item": "Round Neck T-shirt (Short sleeves - Yellow)",
+        "Image": "https://i.imgur.com/5R6Dg9r.jpeg",
+        "Sizes": ["XS", "S", "M", "L", "2XL"],
+        "Price": 4.00
+    },
+    {
+        "Item": "Round Neck T-shirt (Short Sleeves - Orange)",
+        "Image": "https://i.imgur.com/5R6Dg9r.jpeg",
+        "Sizes": ["XS", "S", "M", "L", "2XL"],
+        "Price": 4.00
+    },
+    {
+        "Item": "Men Polo Shirt",
+        "Image": "https://i.imgur.com/y7y0UnV.jpeg",
+        "Sizes": ["S", "M", "L", "2XL", "3XL", "4XL"],
+        "Price": 26.00
+    },
+    {
+        "Item": "Woman Polo Shirt",
+        "Image": "https://i.imgur.com/F8z7MNc.jpeg",
+        "Sizes": ["XS", "S", "M", "L", "2XL"],
+        "Price": 26.00
+    },
+    {
+        "Item": "Beanie",
+        "Image": "https://i.imgur.com/qN1zRVc.jpeg",
+        "Sizes": ["One Size"],
+        "Price": 3.50
+    },
+    {
+        "Item": "Magnetic Pin",
+        "Image": "https://i.imgur.com/Qd1Xqtb.jpeg",
+        "Sizes": ["One Size"],
+        "Price": 1.50
     }
 ]
 
