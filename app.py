@@ -12,7 +12,7 @@ inventory = {
     "Apparel": [
         {
             "Item": "Winter Jacket",
-            "Image": "https://i.imgur.com/jKq8875.png",  # updated Imgur link
+            "Image": "https://i.imgur.com/jKq8875.png",
             "Price": 20.06,
             "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
         },
@@ -78,25 +78,25 @@ inventory = {
         },
         {
             "Item": "Men Polo Shirt",
-            "Image": "",  # Add Imgur link if available
+            "Image": "",
             "Price": 26,
             "Sizes": ["S", "M", "L", "2XL", "3XL", "4XL"]
         },
         {
             "Item": "Woman Polo Shirt",
-            "Image": "",  # Add Imgur link if available
+            "Image": "",
             "Price": 26,
             "Sizes": ["XS", "S", "M", "L", "2XL"]
         },
         {
             "Item": "Beanie",
-            "Image": "",  # Add Imgur link if available
+            "Image": "",
             "Price": 3.5,
             "Sizes": []
         },
         {
             "Item": "Magnetic Pin",
-            "Image": "",  # Add Imgur link if available
+            "Image": "",
             "Price": 1.5,
             "Sizes": []
         },
@@ -104,25 +104,25 @@ inventory = {
     "Work Protection Gear": [
         {
             "Item": "Safety Helmet - Blue",
-            "Image": "",  # Add Imgur link if available
+            "Image": "https://i.imgur.com/4egynk5.png",
             "Price": 3.67,
             "Sizes": []
         },
         {
             "Item": "Safety Helmet - Red",
-            "Image": "",  # Add Imgur link if available
+            "Image": "https://i.imgur.com/c14k5Ji.png",
             "Price": 3.67,
             "Sizes": []
         },
         {
             "Item": "Safety Helmet - White",
-            "Image": "",  # Add Imgur link if available
+            "Image": "https://i.imgur.com/aGWu8WE.png",
             "Price": 3.67,
             "Sizes": []
         },
         {
             "Item": "Safety Vest",
-            "Image": "",  # Add Imgur link if available
+            "Image": "",
             "Price": 3.73,
             "Sizes": ["L", "XL", "2XL", "3XL"]
         },
@@ -146,50 +146,45 @@ for category, items in inventory.items():
             item_name = item["Item"]
             item_price = item["Price"]
             img_url = item.get("Image", "")
-            
-            # Display item name with price
-            with st.container():
-                if img_url:
-                    st.image(img_url, width=150)
-                st.write(f"**{item_name}** (USD {item_price:.2f})")
 
-                # Sizes and quantities
-                if item["Sizes"]:
-                    for size in item["Sizes"]:
-                        qty = st.number_input(
-                            f"{item_name} - Size {size}",
-                            min_value=0,
-                            step=1,
-                            key=f"{item_name}_{size}"
-                        )
-                        if qty > 0:
-                            order.append({
-                                "Item": item_name,
-                                "Size": size,
-                                "Quantity": qty,
-                                "Price": item_price,
-                                "Total": qty * item_price
-                            })
-                else:
-                    # No size items (Beanie, Pin, Helmets)
+            st.write(f"**{item_name}** (USD {item_price:.2f})")
+            if img_url:
+                st.image(img_url, width=150)
+
+            if item["Sizes"]:
+                for size in item["Sizes"]:
                     qty = st.number_input(
-                        f"{item_name}",
+                        f"{item_name} - Size {size}",
                         min_value=0,
                         step=1,
-                        key=f"{item_name}_qty"
+                        key=f"{item_name}_{size}"
                     )
                     if qty > 0:
                         order.append({
                             "Item": item_name,
-                            "Size": "One Size",
+                            "Size": size,
                             "Quantity": qty,
                             "Price": item_price,
                             "Total": qty * item_price
                         })
+            else:
+                qty = st.number_input(
+                    f"{item_name}",
+                    min_value=0,
+                    step=1,
+                    key=f"{item_name}_qty"
+                )
+                if qty > 0:
+                    order.append({
+                        "Item": item_name,
+                        "Size": "One Size",
+                        "Quantity": qty,
+                        "Price": item_price,
+                        "Total": qty * item_price
+                    })
 
 # Calculate total amount
 total_amount = sum(item["Total"] for item in order)
-
 if total_amount > 0:
     st.write(f"### Total Amount: USD {total_amount:.2f}")
 
@@ -207,13 +202,11 @@ if st.button("Submit Order"):
         df.insert(4, "Address", address)
         df["Timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        # Create Excel file in memory
         output = BytesIO()
         with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
             df.to_excel(writer, index=False, sheet_name="Order")
         excel_data = output.getvalue()
 
-        # Email sending function (make sure to set st.secrets accordingly)
         def send_email():
             msg = EmailMessage()
             msg["Subject"] = f"New Merchandise Order from {name}"
@@ -249,6 +242,4 @@ if st.button("Submit Order"):
 
         success, message = send_email()
         if success:
-            st.success(message)
-        else:
-            st.error(message)
+            st
