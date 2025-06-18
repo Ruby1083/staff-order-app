@@ -16,7 +16,7 @@ inventory = {
         {"Item": "Men Bamboo Shirt", "Image": "https://i.imgur.com/D1JeIe4.png", "Price": 16, "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"]},
         {"Item": "Woman Bamboo Shirt", "Image": "https://i.imgur.com/VbJ7vwJ.png", "Price": 16, "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"]},
         {"Item": "Round Neck T-shirt (Long sleeves - Blue)", "Image": "https://i.imgur.com/Jq0DzyE.png", "Price": 7.5, "Sizes": ["S", "M", "L", "2XL"]},
-        {"Item": "Round Neck T-shirt (Short Sleeves - Blue)", "Image": "https://i.imgur.com/Hy8SOhI.png", "Price": 6, "Sizes": ["XS", "S", "M", "L", "2XL"]},
+        {"Item": "Round Neck T-shirt (Short Sleeves - Blue)", "Image": "https://i.imgur.com/ZeF7FTF.jpeg", "Price": 6, "Sizes": ["XS", "S", "M", "L", "2XL"]},
         {"Item": "Round Neck T-shirt (Long sleeves - Yellow)", "Image": "https://i.imgur.com/GxIKeZv.png", "Price": 4.44, "Sizes": ["S", "M", "L", "2XL"]},
         {"Item": "Round Neck T-shirt (Long Sleeves - Orange)", "Image": "https://i.imgur.com/LvL2FZM.png", "Price": 4.44, "Sizes": ["S", "M", "L", "2XL"]},
         {"Item": "Round Neck T-shirt (Short sleeves - Yellow)", "Image": "https://i.imgur.com/SMYMwFo.png", "Price": 4, "Sizes": ["XS", "S", "M", "L", "2XL"]},
