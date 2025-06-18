@@ -66,7 +66,7 @@ inventory = {
         },
         {
             "Item": "Round Neck T-shirt (Short Sleeves - Orange)",
-            "Image": "https://i.imgur.com/Y7XaNXa.png",
+            "Image": "https://drive.google.com/uc?export=view&id=1x822gHP19qHKQBdojDXbrIThG0fA1oCs",
             "Sizes": ["XS", "S", "M", "L", "2XL"],
             "Price": 4.00
         },
