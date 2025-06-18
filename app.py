@@ -5,7 +5,7 @@ from email.message import EmailMessage
 import smtplib
 from datetime import datetime
 
-st.title("Staff Apparel Order Form")
+st.title("Global Merchandise Order Form")
 
 # Inventory with price
 inventory = [
@@ -18,7 +18,7 @@ inventory = [
 ]
 
 # Staff info inputs
-st.header("Staff Information")
+st.header("Contact Information")
 name = st.text_input("Full Name")
 email = st.text_input("Email")
 phone = st.text_input("Phone Number")
@@ -48,6 +48,17 @@ for item in inventory:
                     "Subtotal (USD)": round(qty * item["Price"], 2)
                 })
 
+# Show order summary before submission
+if order:
+    st.subheader("Order Summary")
+    summary_df = pd.DataFrame(order)
+    st.dataframe(summary_df)
+
+    total_amount = summary_df["Subtotal (USD)"].sum()
+    st.markdown(f"### Total Amount: USD ${total_amount:.2f}")
+else:
+    total_amount = 0.00
+
 # Submit button and processing
 if st.button("Submit Order"):
     if not name or not email or not address:
@@ -62,11 +73,6 @@ if st.button("Submit Order"):
         df.insert(3, "Location", location)
         df.insert(4, "Address", address)
         df["Timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-        total_amount = df["Subtotal (USD)"].sum()
-
-        # Display total amount in app
-        st.subheader(f"Total Amount: USD ${total_amount:.2f}")
 
         # Create Excel file in memory
         output = BytesIO()
