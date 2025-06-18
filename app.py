@@ -21,10 +21,10 @@ inventory = {
         {"Item": "Round Neck T-shirt (Long Sleeves - Orange)", "Image": "https://i.imgur.com/LvL2FZM.png", "Price": 4.44, "Sizes": ["S", "M", "L", "2XL"]},
         {"Item": "Round Neck T-shirt (Short sleeves - Yellow)", "Image": "https://i.imgur.com/SMYMwFo.png", "Price": 4, "Sizes": ["XS", "S", "M", "L", "2XL"]},
         {"Item": "Round Neck T-shirt (Short Sleeves - Orange)", "Image": "https://i.imgur.com/Y7XaNXa.png", "Price": 4, "Sizes": ["XS", "S", "M", "L", "2XL"]},
-        {"Item": "Men Polo Shirt", "Image": "", "Price": 26, "Sizes": ["S", "M", "L", "2XL", "3XL", "4XL"]},
-        {"Item": "Woman Polo Shirt", "Image": "", "Price": 26, "Sizes": ["XS", "S", "M", "L", "2XL"]},
-        {"Item": "Beanie", "Image": "", "Price": 3.5, "Sizes": []},
-        {"Item": "Magnetic Pin", "Image": "", "Price": 1.5, "Sizes": []}
+        {"Item": "Men Polo Shirt", "Image": "https://i.imgur.com/dNljgKo.jpeg", "Price": 26, "Sizes": ["S", "M", "L", "2XL", "3XL", "4XL"]},
+        {"Item": "Woman Polo Shirt", "Image": "https://i.imgur.com/zlffC6N.jpeg", "Price": 26, "Sizes": ["XS", "S", "M", "L", "2XL"]},
+        {"Item": "Beanie", "Image": "https://i.imgur.com/fB6vQdE.jpeg", "Price": 3.5, "Sizes": []},
+        {"Item": "Magnetic Pin", "Image": "https://i.imgur.com/yjteqqu.jpeg", "Price": 1.5, "Sizes": []}
     ],
     "Work Protection Gear": [
         {"Item": "Safety Helmet - Blue", "Image": "https://i.imgur.com/4egynk5.png", "Price": 3.67, "Sizes": []},
