@@ -7,24 +7,24 @@ from datetime import datetime
 
 st.title("Global Merchandise Item Order Form")
 
-# Inventory grouped by categories, with images added for helmet and safety vest
+# Inventory grouped by categories, with image URLs added for all items
 inventory = {
     "Apparel": [
         {"Item": "Winter Jacket", "Image": "https://i.imgur.com/wQLUiUH.jpeg", "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"], "Price": 20.06},
-        {"Item": "Men Oxford Shirt", "Image": "", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
-        {"Item": "Woman Oxford Shirt", "Image": "", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
-        {"Item": "Men Bamboo Shirt", "Image": "", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
-        {"Item": "Woman Bamboo Shirt", "Image": "", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
-        {"Item": "Round Neck T-shirt (Long sleeves - Blue)", "Image": "", "Sizes": ["S", "M", "L", "2XL"], "Price": 7.50},
-        {"Item": "Round Neck T-shirt (Short Sleeves - Blue)", "Image": "", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 6.00},
-        {"Item": "Round Neck T-shirt (Long sleeves - Yellow)", "Image": "", "Sizes": ["S", "M", "L", "2XL"], "Price": 4.44},
-        {"Item": "Round Neck T-shirt (Long Sleeves - Orange)", "Image": "", "Sizes": ["S", "M", "L", "2XL"], "Price": 4.44},
-        {"Item": "Round Neck T-shirt (Short sleeves - Yellow)", "Image": "", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 4.00},
-        {"Item": "Round Neck T-shirt (Short Sleeves - Orange)", "Image": "", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 4.00},
-        {"Item": "Men Polo Shirt", "Image": "", "Sizes": ["S", "M", "L", "2XL", "3XL", "4XL"], "Price": 26.00},
-        {"Item": "Woman Polo Shirt", "Image": "", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 26.00},
-        {"Item": "Beanie", "Image": "", "Sizes": ["One Size"], "Price": 3.50},
-        {"Item": "Magnetic Pin", "Image": "", "Sizes": ["One Size"], "Price": 1.50},
+        {"Item": "Men Oxford Shirt", "Image": "https://i.imgur.com/2IjT20W.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
+        {"Item": "Woman Oxford Shirt", "Image": "https://i.imgur.com/y0yxA6Q.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
+        {"Item": "Men Bamboo Shirt", "Image": "https://i.imgur.com/gLY4cHy.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
+        {"Item": "Woman Bamboo Shirt", "Image": "https://i.imgur.com/nqgN1Oz.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
+        {"Item": "Round Neck T-shirt (Long sleeves - Blue)", "Image": "https://i.imgur.com/TZ2h7eF.jpeg", "Sizes": ["S", "M", "L", "2XL"], "Price": 7.50},
+        {"Item": "Round Neck T-shirt (Short Sleeves - Blue)", "Image": "https://i.imgur.com/QMUPvRH.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 6.00},
+        {"Item": "Round Neck T-shirt (Long sleeves - Yellow)", "Image": "https://i.imgur.com/AWZx7Gm.jpeg", "Sizes": ["S", "M", "L", "2XL"], "Price": 4.44},
+        {"Item": "Round Neck T-shirt (Long Sleeves - Orange)", "Image": "https://i.imgur.com/xR8aYwc.jpeg", "Sizes": ["S", "M", "L", "2XL"], "Price": 4.44},
+        {"Item": "Round Neck T-shirt (Short sleeves - Yellow)", "Image": "https://i.imgur.com/1HfHPut.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 4.00},
+        {"Item": "Round Neck T-shirt (Short Sleeves - Orange)", "Image": "https://i.imgur.com/jh7w6Ut.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 4.00},
+        {"Item": "Men Polo Shirt", "Image": "https://i.imgur.com/RF4eJrm.jpeg", "Sizes": ["S", "M", "L", "2XL", "3XL", "4XL"], "Price": 26.00},
+        {"Item": "Woman Polo Shirt", "Image": "https://i.imgur.com/1xhlGp9.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 26.00},
+        {"Item": "Beanie", "Image": "https://i.imgur.com/M7DAlGB.jpeg", "Sizes": ["One Size"], "Price": 3.50},
+        {"Item": "Magnetic Pin", "Image": "https://i.imgur.com/3grZmcd.jpeg", "Sizes": ["One Size"], "Price": 1.50},
     ],
     "Work Protection Gear": [
         {
