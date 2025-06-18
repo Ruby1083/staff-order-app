@@ -7,36 +7,125 @@ from datetime import datetime
 
 st.title("Global Merchandise Item Order Form")
 
+# Inventory with categories, items, prices, sizes, and images
 inventory = {
     "Apparel": [
         {
             "Item": "Winter Jacket",
-            "Image": "https://i.imgur.com/VZGnatT.jpeg",
-            "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
             "Price": 20.06,
+            "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+            "Image": "https://i.imgur.com/VZGnatT.jpeg",
         },
-        # ... (other apparel items here)
+        {
+            "Item": "Men Oxford Shirt",
+            "Price": 16.00,
+            "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+            "Image": "https://i.imgur.com/URHj9BN.png",
+        },
+        {
+            "Item": "Woman Oxford Shirt",
+            "Price": 16.00,
+            "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+            "Image": "https://i.imgur.com/6kzygzj.png",
+        },
+        {
+            "Item": "Men Bamboo Shirt",
+            "Price": 16.00,
+            "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+            "Image": "https://i.imgur.com/D1JeIe4.png",
+        },
+        {
+            "Item": "Woman Bamboo Shirt",
+            "Price": 16.00,
+            "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+            "Image": "https://i.imgur.com/VbJ7vwJ.png",
+        },
+        {
+            "Item": "Round Neck T-shirt (Long sleeves - Blue)",
+            "Price": 7.50,
+            "Sizes": ["S", "M", "L", "2XL"],
+            "Image": "https://i.imgur.com/Jq0DzyE.png",
+        },
+        {
+            "Item": "Round Neck T-shirt (Short Sleeves - Blue)",
+            "Price": 6.00,
+            "Sizes": ["XS", "S", "M", "L", "2XL"],
+            "Image": "https://i.imgur.com/Hy8SOhI.png",
+        },
+        {
+            "Item": "Round Neck T-shirt (Long sleeves - Yellow)",
+            "Price": 4.44,
+            "Sizes": ["S", "M", "L", "2XL"],
+            "Image": "https://i.imgur.com/GxIKeZv.png",
+        },
+        {
+            "Item": "Round Neck T-shirt (Long Sleeves - Orange)",
+            "Price": 4.44,
+            "Sizes": ["S", "M", "L", "2XL"],
+            "Image": "https://i.imgur.com/LvL2FZM.png",
+        },
+        {
+            "Item": "Round Neck T-shirt (Short sleeves - Yellow)",
+            "Price": 4.00,
+            "Sizes": ["XS", "S", "M", "L", "2XL"],
+            "Image": "https://i.imgur.com/SMYMwFo.png",
+        },
+        {
+            "Item": "Round Neck T-shirt (Short Sleeves - Orange)",
+            "Price": 4.00,
+            "Sizes": ["XS", "S", "M", "L", "2XL"],
+            "Image": "https://i.imgur.com/Y7XaNXa.png",
+        },
+        {
+            "Item": "Men Polo Shirt",
+            "Price": 26.00,
+            "Sizes": ["S", "M", "L", "2XL", "3XL", "4XL"],
+            "Image": "",
+        },
+        {
+            "Item": "Woman Polo Shirt",
+            "Price": 26.00,
+            "Sizes": ["XS", "S", "M", "L", "2XL"],
+            "Image": "",
+        },
         {
             "Item": "Beanie",
-            "Image": "",
-            "Sizes": [],
             "Price": 3.50,
+            "Sizes": [],
+            "Image": "",
         },
         {
             "Item": "Magnetic Pin",
-            "Image": "",
-            "Sizes": [],
             "Price": 1.50,
+            "Sizes": [],
+            "Image": "",
         },
     ],
     "Work Protection Gear": [
         {
             "Item": "Safety Helmet - Blue",
-            "Image": "",
-            "Sizes": [],
             "Price": 3.67,
+            "Sizes": [],
+            "Image": "",
         },
-        # ... (other protection gear items)
+        {
+            "Item": "Safety Helmet - Red",
+            "Price": 3.67,
+            "Sizes": [],
+            "Image": "",
+        },
+        {
+            "Item": "Safety Helmet - White",
+            "Price": 3.67,
+            "Sizes": [],
+            "Image": "",
+        },
+        {
+            "Item": "Safety Vest",
+            "Price": 3.73,
+            "Sizes": ["L", "XL", "2XL", "3XL"],
+            "Image": "",
+        },
     ],
 }
 
@@ -48,6 +137,7 @@ location = st.text_input("Location / Office")
 address = st.text_area("Delivery Address")
 
 st.header("Order Details")
+
 order = []
 
 for category_name, items in inventory.items():
@@ -59,7 +149,6 @@ for category_name, items in inventory.items():
             image_url = item.get("Image", "")
 
             st.subheader(f"{item_name} (USD {item_price:.2f})")
-
             if image_url:
                 st.image(image_url, width=150)
 
@@ -80,6 +169,7 @@ for category_name, items in inventory.items():
                             "Price": item_price,
                         })
             else:
+                # No size, no label after input
                 qty = st.number_input(
                     key=f"{item_name}_qty",
                     label="",
