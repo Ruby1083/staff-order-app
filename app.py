@@ -33,8 +33,8 @@ inventory = {
         {"Item": "Safety Vest", "Image": "", "Price": 3.73, "Sizes": ["L", "XL", "2XL", "3XL"]}
     ],
   "Job Fair Sourvenirs": [
-        {"Item": "Ball Pen - Blue Ink", "Image": "https://i.imgur.com/4egynk5.png", "Price": 21, "Sizes": []},
-        {"Item": "Ball Pen - Black Ink", "Image": "https://i.imgur.com/c14k5Ji.png", "Price": 18, "Sizes": []},
+        {"Item": "Ball Pen - Blue Ink", "Image": "https://i.imgur.com/EdOevMh.jpeg", "Price": 21, "Sizes": []},
+        {"Item": "Ball Pen - Black Ink", "Image": "https://i.imgur.com/CDheZrD.jpeg", "Price": 18, "Sizes": []},
     ]
 }
 # Contact Info
