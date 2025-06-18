@@ -7,44 +7,101 @@ from datetime import datetime
 
 st.title("Global Merchandise Item Order Form")
 
-# Inventory grouped by categories, with updated Winter Jacket image URL from Imgur
+# Inventory with categories, items, prices, sizes, and images
 inventory = {
     "Apparel": [
+        {
+            "Item": "Men Oxford Shirt",
+            "Image": "https://i.imgur.com/URHj9BN.png",
+            "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+            "Price": 16.00
+        },
+        {
+            "Item": "Woman Oxford Shirt",
+            "Image": "https://i.imgur.com/6kzygzj.png",
+            "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+            "Price": 16.00
+        },
+        {
+            "Item": "Men Bamboo Shirt",
+            "Image": "https://i.imgur.com/D1JeIe4.png",
+            "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+            "Price": 16.00
+        },
+        {
+            "Item": "Woman Bamboo Shirt",
+            "Image": "https://i.imgur.com/VbJ7vwJ.png",
+            "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"],
+            "Price": 16.00
+        },
+        {
+            "Item": "Round Neck T-shirt (Long sleeves - Blue)",
+            "Image": "https://i.imgur.com/Jq0DzyE.png",
+            "Sizes": ["S", "M", "L", "2XL"],
+            "Price": 7.50
+        },
+        {
+            "Item": "Round Neck T-shirt (Short Sleeves - Blue)",
+            "Image": "https://i.imgur.com/Hy8SOhI.png",
+            "Sizes": ["XS", "S", "M", "L", "2XL"],
+            "Price": 6.00
+        },
+        {
+            "Item": "Round Neck T-shirt (Long sleeves - Yellow)",
+            "Image": "https://i.imgur.com/GxIKeZv.png",
+            "Sizes": ["S", "M", "L", "2XL"],
+            "Price": 4.44
+        },
+        {
+            "Item": "Round Neck T-shirt (Long Sleeves - Orange)",
+            "Image": "https://i.imgur.com/LvL2FZM.png",
+            "Sizes": ["S", "M", "L", "2XL"],
+            "Price": 4.44
+        },
+        {
+            "Item": "Round Neck T-shirt (Short sleeves - Yellow)",
+            "Image": "https://i.imgur.com/SMYMwFo.png",
+            "Sizes": ["XS", "S", "M", "L", "2XL"],
+            "Price": 4.00
+        },
+        {
+            "Item": "Round Neck T-shirt (Short Sleeves - Orange)",
+            "Image": "https://i.imgur.com/Y7XaNXa.png",
+            "Sizes": ["XS", "S", "M", "L", "2XL"],
+            "Price": 4.00
+        },
+        {
+            "Item": "Men Polo Shirt",
+            "Image": "",  # Add image if you have
+            "Sizes": ["S", "M", "L", "2XL", "3XL", "4XL"],
+            "Price": 26.00
+        },
+        {
+            "Item": "Woman Polo Shirt",
+            "Image": "",  # Add image if you have
+            "Sizes": ["XS", "S", "M", "L", "2XL"],
+            "Price": 26.00
+        },
+        {
+            "Item": "Beanie",
+            "Image": "",  # Add image if you have
+            "Sizes": [],
+            "Price": 3.50
+        },
+        {
+            "Item": "Magnetic Pin",
+            "Image": "",  # Add image if you have
+            "Sizes": [],
+            "Price": 1.50
+        },
         {
             "Item": "Winter Jacket",
             "Image": "https://i.imgur.com/wQLUiUH.jpeg",
             "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
             "Price": 20.06
         },
-        {"Item": "Men Oxford Shirt", "Image": "https://i.imgur.com/2IjT20W.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
-        {"Item": "Woman Oxford Shirt", "Image": "https://i.imgur.com/y0yxA6Q.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
-        {"Item": "Men Bamboo Shirt", "Image": "https://i.imgur.com/gLY4cHy.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
-        {"Item": "Woman Bamboo Shirt", "Image": "https://i.imgur.com/nqgN1Oz.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL", "3XL"], "Price": 16.00},
-        {"Item": "Round Neck T-shirt (Long sleeves - Blue)", "Image": "https://i.imgur.com/TZ2h7eF.jpeg", "Sizes": ["S", "M", "L", "2XL"], "Price": 7.50},
-        {"Item": "Round Neck T-shirt (Short Sleeves - Blue)", "Image": "https://i.imgur.com/QMUPvRH.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 6.00},
-        {"Item": "Round Neck T-shirt (Long sleeves - Yellow)", "Image": "https://i.imgur.com/AWZx7Gm.jpeg", "Sizes": ["S", "M", "L", "2XL"], "Price": 4.44},
-        {"Item": "Round Neck T-shirt (Long Sleeves - Orange)", "Image": "https://i.imgur.com/xR8aYwc.jpeg", "Sizes": ["S", "M", "L", "2XL"], "Price": 4.44},
-        {"Item": "Round Neck T-shirt (Short sleeves - Yellow)", "Image": "https://i.imgur.com/1HfHPut.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 4.00},
-        {"Item": "Round Neck T-shirt (Short Sleeves - Orange)", "Image": "https://i.imgur.com/jh7w6Ut.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 4.00},
-        {"Item": "Men Polo Shirt", "Image": "https://i.imgur.com/RF4eJrm.jpeg", "Sizes": ["S", "M", "L", "2XL", "3XL", "4XL"], "Price": 26.00},
-        {"Item": "Woman Polo Shirt", "Image": "https://i.imgur.com/1xhlGp9.jpeg", "Sizes": ["XS", "S", "M", "L", "2XL"], "Price": 26.00},
-        {"Item": "Beanie", "Image": "https://i.imgur.com/M7DAlGB.jpeg", "Sizes": ["One Size"], "Price": 3.50},
-        {"Item": "Magnetic Pin", "Image": "https://i.imgur.com/3grZmcd.jpeg", "Sizes": ["One Size"], "Price": 1.50},
     ],
-    "Work Protection Gear": [
-        {
-            "Item": "Safety Helmet",
-            "Image": "https://i.imgur.com/3H7xpQi.jpeg",  # Replace with actual helmet image URL if you want
-            "Colors": ["Blue", "Red", "White"],
-            "Price": 3.67
-        },
-        {
-            "Item": "Safety Vest",
-            "Image": "https://i.imgur.com/Ga6GrEo.jpeg",  # Replace with actual vest image URL if you want
-            "Sizes": ["L", "XL", "2XL", "3XL"],
-            "Price": 3.73
-        },
-    ]
+    # Add other categories here if needed
 }
 
 # Contact info inputs
@@ -57,78 +114,58 @@ address = st.text_area("Delivery Address")
 
 # Order input section
 st.header("Order Details")
-
 order = []
-total_amount = 0.0
 
 for category, items in inventory.items():
     with st.expander(category):
         for item in items:
-            st.subheader(f"{item['Item']} (USD {item['Price']:.2f})")
-            if item.get("Image"):
-                st.image(item["Image"], width=150)
+            item_name = item["Item"]
+            item_price = item["Price"]
+            sizes = item["Sizes"]
+            image_url = item["Image"]
 
-            # Handle items with colors (for Safety Helmet)
-            if "Colors" in item:
-                for color in item["Colors"]:
-                    qty = st.number_input(f"{color}", min_value=0, step=1, key=f"{item['Item']}_{color}")
-                    if qty > 0:
-                        subtotal = qty * item["Price"]
-                        order.append({
-                            "Category": category,
-                            "Name": name,
-                            "Email": email,
-                            "Phone": phone,
-                            "Location": location,
-                            "Address": address,
-                            "Item": item["Item"],
-                            "Size/Color": color,
-                            "Quantity": qty,
-                            "Unit Price (USD)": item["Price"],
-                            "Subtotal (USD)": round(subtotal, 2)
-                        })
-                        total_amount += subtotal
+            # Display image if available
+            if image_url:
+                st.image(image_url, width=150)
 
-            # Handle items with sizes
-            elif "Sizes" in item:
-                if item["Sizes"] == ["One Size"]:
-                    qty = st.number_input(f"{item['Item']}", min_value=0, step=1, key=f"{item['Item']}_one_size")
-                    if qty > 0:
-                        subtotal = qty * item["Price"]
-                        order.append({
-                            "Category": category,
-                            "Name": name,
-                            "Email": email,
-                            "Phone": phone,
-                            "Location": location,
-                            "Address": address,
-                            "Item": item["Item"],
-                            "Size/Color": "",
-                            "Quantity": qty,
-                            "Unit Price (USD)": item["Price"],
-                            "Subtotal (USD)": round(subtotal, 2)
-                        })
-                        total_amount += subtotal
-                else:
-                    for size in item["Sizes"]:
-                        qty = st.number_input(f"{size}", min_value=0, step=1, key=f"{item['Item']}_{size}")
+            # Create sub-expander for each item with price shown
+            with st.expander(f"{item_name} (USD {item_price:.2f})"):
+
+                if sizes:
+                    for size in sizes:
+                        qty = st.number_input(
+                            f"{size}",
+                            min_value=0,
+                            step=1,
+                            key=f"{item_name}_{size}"
+                        )
                         if qty > 0:
-                            subtotal = qty * item["Price"]
                             order.append({
-                                "Category": category,
-                                "Name": name,
-                                "Email": email,
-                                "Phone": phone,
-                                "Location": location,
-                                "Address": address,
-                                "Item": item["Item"],
-                                "Size/Color": size,
+                                "Item": item_name,
+                                "Size": size,
                                 "Quantity": qty,
-                                "Unit Price (USD)": item["Price"],
-                                "Subtotal (USD)": round(subtotal, 2)
+                                "Price": item_price,
+                                "Amount": qty * item_price
                             })
-                            total_amount += subtotal
-            st.markdown("---")
+                else:
+                    # For no-size items (Beanie, Magnetic Pin)
+                    qty = st.number_input(
+                        "",
+                        min_value=0,
+                        step=1,
+                        key=f"{item_name}_no_size"
+                    )
+                    if qty > 0:
+                        order.append({
+                            "Item": item_name,
+                            "Size": "",
+                            "Quantity": qty,
+                            "Price": item_price,
+                            "Amount": qty * item_price
+                        })
+
+# Calculate total
+total_amount = sum(item["Amount"] for item in order)
 
 st.write(f"### Total Amount: USD {total_amount:.2f}")
 
@@ -140,6 +177,11 @@ if st.button("Submit Order"):
         st.warning("No items selected.")
     else:
         df = pd.DataFrame(order)
+        df.insert(0, "Name", name)
+        df.insert(1, "Email", email)
+        df.insert(2, "Phone", phone)
+        df.insert(3, "Location", location)
+        df.insert(4, "Address", address)
         df["Timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Create Excel file in memory
@@ -151,7 +193,7 @@ if st.button("Submit Order"):
         # Email sending function
         def send_email():
             msg = EmailMessage()
-            msg["Subject"] = f"New Apparel Order from {name}"
+            msg["Subject"] = f"New Merchandise Order from {name}"
             msg["From"] = st.secrets["EMAIL_USER"]
             msg["To"] = st.secrets["ADMIN_EMAIL"]
             msg.set_content(f"New order submitted by {name}.\n\nSee attached Excel file.")
