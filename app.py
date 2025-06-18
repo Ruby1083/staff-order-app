@@ -27,7 +27,7 @@ inventory = {
         {"Item": "Magnetic Pin", "Image": "", "Sizes": ["One Size"], "Price": 1.50},
     ],
     "Work Protection Gear": [
-        {"Item": "Safety Helmet", "Image": "", "Sizes": ["Blue", "Red", "White"], "Price": 3.67},
+        {"Item": "Safety Helmet", "Image": "", "Colors": ["Blue", "Red", "White"], "Price": 3.67},
         {"Item": "Safety Vest", "Image": "", "Sizes": ["L", "XL", "2XL", "3XL"], "Price": 3.73},
     ]
 }
@@ -49,34 +49,14 @@ total_amount = 0.0
 for category, items in inventory.items():
     with st.expander(category):
         for item in items:
-            # Show item with price
             st.subheader(f"{item['Item']} (USD {item['Price']:.2f})")
-            if item["Image"]:
+            if item.get("Image"):
                 st.image(item["Image"], width=150)
-            
-            if item["Sizes"] == ["One Size"]:
-                # No size label or quantity label after
-                qty = st.number_input(f"{item['Item']}", min_value=0, step=1, key=f"{item['Item']}_one_size")
-                if qty > 0:
-                    subtotal = qty * item["Price"]
-                    order.append({
-                        "Category": category,
-                        "Name": name,
-                        "Email": email,
-                        "Phone": phone,
-                        "Location": location,
-                        "Address": address,
-                        "Item": item["Item"],
-                        "Size": "",
-                        "Quantity": qty,
-                        "Unit Price (USD)": item["Price"],
-                        "Subtotal (USD)": round(subtotal, 2)
-                    })
-                    total_amount += subtotal
-            else:
-                for size in item["Sizes"]:
-                    # Label size but no 'Quantity' word
-                    qty = st.number_input(f"{item['Item']} - Size {size}", min_value=0, step=1, key=f"{item['Item']}_{size}")
+
+            # Handle items with colors (for Safety Helmet)
+            if "Colors" in item:
+                for color in item["Colors"]:
+                    qty = st.number_input(f"{color}", min_value=0, step=1, key=f"{item['Item']}_{color}")
                     if qty > 0:
                         subtotal = qty * item["Price"]
                         order.append({
@@ -87,12 +67,52 @@ for category, items in inventory.items():
                             "Location": location,
                             "Address": address,
                             "Item": item["Item"],
-                            "Size": size,
+                            "Size/Color": color,
                             "Quantity": qty,
                             "Unit Price (USD)": item["Price"],
                             "Subtotal (USD)": round(subtotal, 2)
                         })
                         total_amount += subtotal
+
+            # Handle items with sizes
+            elif "Sizes" in item:
+                if item["Sizes"] == ["One Size"]:
+                    qty = st.number_input(f"{item['Item']}", min_value=0, step=1, key=f"{item['Item']}_one_size")
+                    if qty > 0:
+                        subtotal = qty * item["Price"]
+                        order.append({
+                            "Category": category,
+                            "Name": name,
+                            "Email": email,
+                            "Phone": phone,
+                            "Location": location,
+                            "Address": address,
+                            "Item": item["Item"],
+                            "Size/Color": "",
+                            "Quantity": qty,
+                            "Unit Price (USD)": item["Price"],
+                            "Subtotal (USD)": round(subtotal, 2)
+                        })
+                        total_amount += subtotal
+                else:
+                    for size in item["Sizes"]:
+                        qty = st.number_input(f"{size}", min_value=0, step=1, key=f"{item['Item']}_{size}")
+                        if qty > 0:
+                            subtotal = qty * item["Price"]
+                            order.append({
+                                "Category": category,
+                                "Name": name,
+                                "Email": email,
+                                "Phone": phone,
+                                "Location": location,
+                                "Address": address,
+                                "Item": item["Item"],
+                                "Size/Color": size,
+                                "Quantity": qty,
+                                "Unit Price (USD)": item["Price"],
+                                "Subtotal (USD)": round(subtotal, 2)
+                            })
+                            total_amount += subtotal
             st.markdown("---")
 
 st.write(f"### Total Amount: USD {total_amount:.2f}")
