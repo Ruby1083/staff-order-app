@@ -34,7 +34,7 @@ inventory = {
     ],
   "Job Fair Sourvenirs": [
         {"Item": "Ball Pen - Blue Ink (100pcs/box)", "Image": "https://i.imgur.com/EdOevMh.jpeg", "Price": 21, "Sizes": []},
-        {"Item": "Ball Pen - Black Ink", "Image": "https://i.imgur.com/CDheZrD.jpeg", "Price": 18, "Sizes": []},
+        {"Item": "Ball Pen - Black Ink (100pcs/box)", "Image": "https://i.imgur.com/CDheZrD.jpeg", "Price": 18, "Sizes": []},
     ]
 }
 # Contact Info
