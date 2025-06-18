@@ -14,7 +14,7 @@ inventory = {
             "Item": "Winter Jacket",
             "Price": 20.06,
             "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
-            "Image": "https://i.imgur.com/VZGnatT.jpeg",
+            "Image": "https://i.imgur.com/jKq8875.png",
         },
         {
             "Item": "Men Oxford Shirt",
