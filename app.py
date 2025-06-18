@@ -7,7 +7,7 @@ from datetime import datetime
 
 st.title("Global Merchandise Item Order Form")
 
-# Inventory grouped by categories
+# Inventory grouped by categories, with images added for helmet and safety vest
 inventory = {
     "Apparel": [
         {"Item": "Winter Jacket", "Image": "https://i.imgur.com/wQLUiUH.jpeg", "Sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"], "Price": 20.06},
@@ -27,12 +27,22 @@ inventory = {
         {"Item": "Magnetic Pin", "Image": "", "Sizes": ["One Size"], "Price": 1.50},
     ],
     "Work Protection Gear": [
-        {"Item": "Safety Helmet", "Image": "", "Colors": ["Blue", "Red", "White"], "Price": 3.67},
-        {"Item": "Safety Vest", "Image": "", "Sizes": ["L", "XL", "2XL", "3XL"], "Price": 3.73},
+        {
+            "Item": "Safety Helmet",
+            "Image": "https://i.imgur.com/helmet_example.jpg",  # Replace with your helmet image URL
+            "Colors": ["Blue", "Red", "White"],
+            "Price": 3.67
+        },
+        {
+            "Item": "Safety Vest",
+            "Image": "https://i.imgur.com/safetyvest_example.jpg",  # Replace with your safety vest image URL
+            "Sizes": ["L", "XL", "2XL", "3XL"],
+            "Price": 3.73
+        },
     ]
 }
 
-# Staff info inputs
+# Contact info inputs
 st.header("Contact Information")
 name = st.text_input("Full Name")
 email = st.text_input("Email")
