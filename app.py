@@ -5,26 +5,29 @@ from email.message import EmailMessage
 import smtplib
 from datetime import datetime
 
-# --- Password Gate without experimental_rerun ---
+# --- Password Gate (final version, one click, no rerun) ---
 st.set_page_config(page_title="Merchandise Order Form", layout="centered")
 st.title("🔒 Access Protected: Global Merchandise Item Order Form")
 
-# Track authentication state
+# Session state to track login
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
 if not st.session_state.authenticated:
-    with st.form("login_form"):
+    with st.form("password_form"):
         password = st.text_input("Enter password to proceed:", type="password")
         submitted = st.form_submit_button("Submit")
         if submitted:
             if password == st.secrets["ORDER_FORM_PASSWORD"]:
                 st.session_state.authenticated = True
-                st.success("✅ Access granted. Please scroll down to continue.")
+                st.success("✅ Access granted. Please scroll down.")
             else:
                 st.error("❌ Incorrect password. Please try again.")
-    st.stop()  # Stop here until password is correct
-    
+
+    # Only stop app if login not yet successful
+    if not st.session_state.authenticated:
+        st.stop()
+        
 st.title("Global Merchandise Item Order Form")
 
 # Inventory with categories, images, and pricing
