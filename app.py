@@ -5,15 +5,24 @@ from email.message import EmailMessage
 import smtplib
 from datetime import datetime
 
-# --- Password Gate ---
+# --- Password Gate with session_state ---
 st.set_page_config(page_title="Merchandise Order Form", layout="centered")
 st.title("🔒 Access Protected: Global Merchandise Item Order Form")
 
-password = st.text_input("Enter password to proceed:", type="password")
-correct_password = st.secrets["ORDER_FORM_PASSWORD"]  # Define in secrets.toml
+# Initialize login state
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
 
-if password != correct_password:
-    st.warning("Please enter the correct password to access the order form.")
+# Show password prompt if not authenticated
+if not st.session_state.authenticated:
+    password = st.text_input("Enter password to proceed:", type="password")
+    correct_password = st.secrets["ORDER_FORM_PASSWORD"]
+
+    if password == correct_password:
+        st.session_state.authenticated = True
+        st.experimental_rerun()  # Refresh to hide password input
+    elif password:
+        st.warning("Incorrect password. Please try again.")
     st.stop()
     
 st.title("Global Merchandise Item Order Form")
