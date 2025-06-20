@@ -5,6 +5,17 @@ from email.message import EmailMessage
 import smtplib
 from datetime import datetime
 
+# --- Password Gate ---
+st.set_page_config(page_title="Merchandise Order Form", layout="centered")
+st.title("🔒 Access Protected: Global Merchandise Item Order Form")
+
+password = st.text_input("Enter password to proceed:", type="password")
+correct_password = st.secrets["ORDER_FORM_PASSWORD"]  # Define in secrets.toml
+
+if password != correct_password:
+    st.warning("Please enter the correct password to access the order form.")
+    st.stop()
+    
 st.title("Global Merchandise Item Order Form")
 
 # Inventory with categories, images, and pricing
