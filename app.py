@@ -5,7 +5,7 @@ from email.message import EmailMessage
 import smtplib
 from datetime import datetime
 
-# --- Password Gate with single-click login ---
+# --- Password Gate with immediate access after login ---
 st.set_page_config(page_title="Merchandise Order Form", layout="centered")
 st.title("🔒 Access Protected: Global Merchandise Item Order Form")
 
@@ -13,19 +13,16 @@ st.title("🔒 Access Protected: Global Merchandise Item Order Form")
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
-# Placeholder for login form
-login_placeholder = st.empty()
-
-# Only show login form if not authenticated
+# Show form only if not authenticated
 if not st.session_state.authenticated:
+    login_placeholder = st.empty()
     with login_placeholder.form("password_form"):
         password = st.text_input("Enter password to proceed:", type="password")
         submitted = st.form_submit_button("Submit")
         if submitted:
             if password == st.secrets["ORDER_FORM_PASSWORD"]:
                 st.session_state.authenticated = True
-                login_placeholder.empty()  # Instantly hide the login form
-                st.success("Access granted. Please proceed below.")
+                st.experimental_rerun()  # ← This works safely now
             else:
                 st.error("Incorrect password. Please try again.")
     st.stop()
