@@ -27,8 +27,6 @@ if not st.session_state.authenticated:
     # Only stop app if login not yet successful
     if not st.session_state.authenticated:
         st.stop()
-        
-st.title("Global Merchandise Item Order Form")
 
 # Inventory with categories, images, and pricing
 inventory = {
