@@ -24,7 +24,7 @@ if not st.session_state.authenticated:
                 st.success("Access granted. Please proceed below.")
             else:
                 st.error("Incorrect password. Please try again.")
-    st.stop()  # Block access until authenticated
+    st.stop()
     
 st.title("Global Merchandise Item Order Form")
 
