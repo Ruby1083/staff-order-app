@@ -13,17 +13,19 @@ st.title("🔒 Access Protected: Global Merchandise Item Order Form")
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
-# Show password prompt if not authenticated
+# Show password input if not yet authenticated
 if not st.session_state.authenticated:
     password = st.text_input("Enter password to proceed:", type="password")
     correct_password = st.secrets["ORDER_FORM_PASSWORD"]
 
-    if password == correct_password:
-        st.session_state.authenticated = True
-        st.experimental_rerun()  # Refresh to hide password input
-    elif password:
-        st.warning("Incorrect password. Please try again.")
-    st.stop()
+    if password:
+        if password == correct_password:
+            st.session_state.authenticated = True
+            st.success("Access granted. Please wait...")
+            st.experimental_rerun()  # Should work now outside widget context
+        else:
+            st.error("Incorrect password. Please try again.")
+    st.stop()  # Prevent the rest of the app from loading
     
 st.title("Global Merchandise Item Order Form")
 
